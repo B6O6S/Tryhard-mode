@@ -1,10 +1,46 @@
--- Add red fog
-local lighting = game:GetService("Lighting")
-lighting.FogEnabled = true
-lighting.FogColor = Color3.fromRGB(255, 0, 0) -- Red color
-lighting.FogStart = 0
-lighting.FogEnd = 500
+-- Script to add a slightly colored red fog to the Roblox game
 
--- Set red lighting
-lighting.Ambient = Color3.fromRGB(255, 0, 0)  -- Red ambient lighting
-lighting.OutdoorAmbient = Color3.fromRGB(255, 0, 0)  -- Red outdoor ambient lighting
+local Lighting = game:GetService("Lighting")
+
+-- Set the fog color to a slightly darker red
+Lighting.FogColor = Color3.fromRGB(200, 0, 0) -- Adjusted red value
+
+-- Set the fog end distance (adjust as needed)
+Lighting.FogEnd = 100
+
+-- Optional: Set the fog start distance (adjust as needed)
+Lighting.FogStart = 0
+
+-- Optional: Tweening for a subtle pulsing effect
+local tweenService = game:GetService("TweenService")
+
+local fogInfo = TweenInfo.new(
+    5, -- Time for the tween (5 seconds)
+    Enum.EasingStyle.Sine,
+    Enum.EasingDirection.Out,
+    -1,
+    true,
+    0
+)
+
+local fogProperties = {
+    FogEnd = 120,
+    FogColor = Color3.fromRGB(180, 0, 0) -- Even darker red for variation
+}
+
+local fogProperties2 = {
+    FogEnd = 100,
+    FogColor = Color3.fromRGB(200, 0, 0) -- Original slightly darker red
+}
+
+local fogTween = tweenService:Create(Lighting, fogInfo, fogProperties)
+local fogTween2 = tweenService:Create(Lighting, fogInfo, fogProperties2)
+
+fogTween:Play()
+fogTween.Completed:Connect(function()
+    fogTween2:Play()
+end)
+
+fogTween2.Completed:Connect(function()
+    fogTween:Play()
+end)
