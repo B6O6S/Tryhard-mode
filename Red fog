@@ -1,13 +1,10 @@
--- Change all parts to SmoothPlastic
-for _, part in ipairs(workspace:GetDescendants()) do
-    if part:IsA("BasePart") then
-        part.Material = Enum.Material.SmoothPlastic
-    end
-end
-
 -- Add red fog
 local lighting = game:GetService("Lighting")
 lighting.FogEnabled = true
 lighting.FogColor = Color3.fromRGB(255, 0, 0) -- Red color
 lighting.FogStart = 0
 lighting.FogEnd = 500
+
+-- Set red lighting
+lighting.Ambient = Color3.fromRGB(255, 0, 0)  -- Red ambient lighting
+lighting.OutdoorAmbient = Color3.fromRGB(255, 0, 0)  -- Red outdoor ambient lighting
