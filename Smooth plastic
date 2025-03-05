@@ -1,6 +1,9 @@
--- Change all parts to SmoothPlastic
-for _, part in ipairs(workspace:GetDescendants()) do
-    if part:IsA("BasePart") then
-        part.Material = Enum.Material.SmoothPlastic
+-- Loop to change all parts to SmoothPlastic continuously
+while true do
+    for _, part in ipairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.Material = Enum.Material.SmoothPlastic
+        end
     end
+    wait(1) -- Wait 1 second before running the loop again
 end
