@@ -1,0 +1,6 @@
+-- Change all parts to SmoothPlastic
+for _, part in ipairs(workspace:GetDescendants()) do
+    if part:IsA("BasePart") then
+        part.Material = Enum.Material.SmoothPlastic
+    end
+end
